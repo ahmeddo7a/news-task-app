@@ -1,16 +1,11 @@
 
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:newsapp/core/error.dart';
+import 'package:newsapp/core/error/error.dart';
 
-abstract class BaseUseCase<T,Parameters> {
-  Future<Either<Failure,T>> call(Parameters parameters);
+abstract class BaseUseCase<T> {
+  Future<Either<Failure,T>> call();
 }
-
-class NoParameters extends Equatable{
-  const NoParameters();
-
   @override
   List<Object?> get props => [];
 
-}

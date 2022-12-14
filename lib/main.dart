@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'core/services/service_locator.dart';
 import 'features/news/presentation/screens/news_home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  ServiceLocator().init();
   runApp(const MyApp());
 }
 
