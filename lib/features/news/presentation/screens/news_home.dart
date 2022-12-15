@@ -12,6 +12,7 @@ import 'package:newsapp/core/services/service_locator.dart';
 import 'package:newsapp/features/news/presentation/logic/news_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../widgets/build_all_news_articles.dart';
 import '../widgets/build_egyptian_articles_widget.dart';
 
 
@@ -56,7 +57,7 @@ class _NewsHomeState extends State<NewsHome> {
     final myWidth = MediaQuery.of(context).size.width;
     final myHeight = MediaQuery.of(context).size.height;
     return BlocProvider(
-      create: (BuildContext context)=> sl<NewsBloc>()..add(GetEgyptianArticlesEvent()),
+      create: (BuildContext context)=> sl<NewsBloc>()..add(GetEgyptianArticlesEvent())..add(GetAllNewsArticlesEvent()),
       child: BlocBuilder<NewsBloc, NewsState>(
           buildWhen: (previous, current) =>
               previous.newsEgyptianArticlesState !=
@@ -68,27 +69,25 @@ class _NewsHomeState extends State<NewsHome> {
                 ),
                 body: Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height:myHeight*0.3,child: const BuildEgyptianArticles()),
-
-                         const Padding(
-                          padding:  EdgeInsets.only(
-                              top: 20.0, right: 15.0, left: 15.0, bottom: 15.0),
-                          child: Text(
-                            'Recent News',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.deepOrange),
-                          ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height:myHeight*0.3,child: const BuildEgyptianArticles()),
+                       const Padding(
+                        padding:  EdgeInsets.only(
+                            top: 20.0, right: 15.0, left: 15.0, bottom: 15.0),
+                        child: Text(
+                          'Latest News',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.deepOrange),
                         ),
-
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                          height: myHeight*0.5,
+                          child: const BuildAllNewsArticles()),
+                    ],
                   ),
                 ),
             );

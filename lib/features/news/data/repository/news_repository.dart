@@ -18,7 +18,16 @@ class NewsRepository extends BaseNewsRepository{
     }on ServerException catch(failure){
       return Left(ServerFailure(failure.errorMessageModel.statusMessage));
     }
-    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, List<Articles>>> getAllNewsArticles() async{
+    final result = await baseNewsRemoteDataSource.getAllNewsArticles();
+    try{
+      return Right(result);
+    }on ServerException catch(failure){
+      return Left(ServerFailure(failure.errorMessageModel.statusMessage));
+    }
   }
 
 }

@@ -6,6 +6,5 @@ import 'package:newsapp/core/error/error.dart';
 abstract class BaseUseCase<T> {
   Future<Either<Failure,T>> call();
 }
-  @override
-  List<Object?> get props => [];
+
 

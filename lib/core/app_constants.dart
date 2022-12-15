@@ -3,4 +3,6 @@ class AppConstants{
   static const String baseUrl='https://newsapi.org/v2';
 
   static const String egyptNews = '$baseUrl/top-headlines?country=eg&apiKey=$apiKey';
+  static const String allNews = '$baseUrl/top-headlines?sources=bbc-news&apiKey=$apiKey';
+
 }

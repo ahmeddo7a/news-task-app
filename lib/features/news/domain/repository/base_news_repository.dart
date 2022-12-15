@@ -5,4 +5,6 @@ import 'package:newsapp/features/news/domain/entities/articles.dart';
 abstract class BaseNewsRepository{
 
   Future<Either<Failure,List<Articles>>> getEgyptArticles();
+  Future<Either<Failure,List<Articles>>> getAllNewsArticles();
+
 }
